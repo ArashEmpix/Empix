@@ -61,8 +61,14 @@ do
         local hash = parsed_url(matches[2])
         join = import_channel_link(hash, ok_cb, false)
       end
-    end
   end
+  if matches[1] == "getfile" and matches[2] and matches[3] and is_sudo(msg) then
+    fulder = matches[2]
+    file = matches[3]
+      local receiver = get_receiver(msg)
+      send_document(receiver, "./"..fulder.."/"..file..", ok_cb, false)
+    end
+    end
 
   --------------------------------------------------------------------------------
 
@@ -76,6 +82,7 @@ do
       '^[/!](unblock) (%d+)$',
       '^[/!](import)$',
       '^[/!](import) (.*)$',
+      '^[/!](getfile) (.*)/(.*)$',
     },
     run = run
   }
