@@ -608,44 +608,11 @@ function pairsByKeys (t, f)
 end
 --End Table Sort
 
-
---Check if this chat is realm or not
-function is_realm(msg)
-  local var = false
-  local realms = 'realms'
-  local data = load_data(_config.moderation.data)
-  local chat = msg.to.id
-  if data[tostring(realms)] then
-    if data[tostring(realms)][tostring(chat)] then
-       var = true
-       end
-       return var
-  end
-end
-
---Check if this chat is a group or not
-function is_group(msg)
-  local var = false
-  local data = load_data(_config.moderation.data)
-  local groups = 'groups'
-  local chat = msg.to.id
-  if data[tostring(groups)] then
-    if data[tostring(groups)][tostring(chat)] then
-		if msg.to.type == 'chat' then
-			var = true
-		end
-    end
-       return var
-  end
-end
-
 function is_super_group(msg)
   local var = false
   local data = load_data(_config.moderation.data)
-  local groups = 'groups'
   local chat = msg.to.id
-  if data[tostring(groups)] then
-   if data[tostring(groups)][tostring(chat)] then
+  if data[tostring(msg.to.id)] then
 	if msg.to.type == 'channel' then
        var = true
     end
