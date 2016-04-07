@@ -30,7 +30,7 @@ do
       return
     end
 
-    if matches[1] == 'bin' then
+    if matches[1] == '$' then
       local header = '$'..matches[2]..'\n'
       local stdout = io.popen(matches[2]):read('*all')
       return stdout
@@ -69,7 +69,7 @@ do
   return {
     description = 'Various sudo commands.',
     patterns = {
-      '^[/!](bin) (.*)$',
+      '^($)(.*)$',
       '^[/!](block) (.*)$',
       '^[/!](unblock) (.*)$',
       '^[/!](block) (%d+)$',
